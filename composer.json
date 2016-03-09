@@ -1,0 +1,26 @@
+{
+  "name": "laemmi/contao-module-videobox",
+  "description": "Videobox module for Contao WebCMS",
+  "keywords": ["youtube", "vimeo", "contao"],
+  "type": "contao-module",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Michael Lämmlein",
+      "email": "laemmi@spacerabbit.de",
+      "homepage": "http://www.spacerabbit.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "contao/core": ">=3.2,<4"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "": "system/modules/vidobox"
+      }
+    }
+  }
+}
