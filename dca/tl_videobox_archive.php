@@ -24,9 +24,8 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
-
 
 /**
  * Table tl_videobox_archive
@@ -103,7 +102,7 @@ $GLOBALS['TL_DCA']['tl_videobox_archive'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_videobox_archive']['editvideosettings'],
 				'href'                => 'key=videobox_settings',
-				'icon'                => 'system/modules/videobox/html/editvideosettings.png'
+				'icon'                => 'system/modules/videobox/assets/editvideosettings.png'
 			),
 		)
 	),
@@ -143,9 +142,8 @@ $GLOBALS['TL_DCA']['tl_videobox_archive'] = array
 	)
 );
 
-class tl_videobox_archive extends Backend
+class tl_videobox_archive extends \Backend
 {
-	
 	/**
 	 * Import the back end user object
 	 */
@@ -154,39 +152,32 @@ class tl_videobox_archive extends Backend
 		parent::__construct();
 		$this->import('BackendUser', 'User');
 	}
-	
-	
+
 	/**
 	 * Check permissions to edit table tl_videobox_archive
 	 */
 	public function checkPermission()
 	{
-		if ($this->User->isAdmin)
-		{
+		if ($this->User->isAdmin) {
 			return;
 		}
 		
 		// Set root IDs
-		if (!is_array($this->User->videobox_archives) || count($this->User->videobox_archives) < 1)
-		{
+		if (!is_array($this->User->videobox_archives) || count($this->User->videobox_archives) < 1) {
 			$root = array(0);
-		}
-		else
-		{
+		} else {
 			$root = $this->User->videobox_archives;
 		}
 
 		$GLOBALS['TL_DCA']['tl_videobox_archive']['list']['sorting']['root'] = $root;
 		
 		// Check permissions to add archives
-		if (!$this->User->hasAccess('create', 'videobox_operations'))
-		{
+		if (!$this->User->hasAccess('create', 'videobox_operations')) {
 			$GLOBALS['TL_DCA']['tl_videobox_archive']['config']['closed'] = true;
 		}
 
 		// Check current action
-		switch ($this->Input->get('act'))
-		{
+		switch ($this->Input->get('act')) {
 			case 'create':
 			case 'select':
 				// Allow
@@ -194,23 +185,19 @@ class tl_videobox_archive extends Backend
 
 			case 'edit':
 				// Dynamically add the record new record to the allowed archives if the user is allowed to create new entries
-				if (!in_array($this->Input->get('id'), $root))
-				{
+				if (!in_array($this->Input->get('id'), $root)) {
 					$arrNew = $this->Session->get('new_records');
 
-					if (is_array($arrNew['tl_videobox_archive']) && in_array($this->Input->get('id'), $arrNew['tl_videobox_archive']))
-					{
+					if (is_array($arrNew['tl_videobox_archive']) && in_array($this->Input->get('id'), $arrNew['tl_videobox_archive'])) {
 						// Add permissions on user level
-						if ($this->User->inherit == 'custom' || !$this->User->groups[0])
-						{
+						if ($this->User->inherit == 'custom' || !$this->User->groups[0]) {
 							$objUser = $this->Database->prepare("SELECT videobox_archives, videobox_operations FROM tl_user WHERE id=?")
 													   ->limit(1)
 													   ->execute($this->User->id);
 
 							$arrOperations = deserialize($objUser->videobox_operations);
 
-							if (is_array($arrOperations) && in_array('create', $arrOperations))
-							{
+							if (is_array($arrOperations) && in_array('create', $arrOperations)) {
 								$arrArchives = deserialize($objUser->videobox_archives);
 								$arrArchives[] = $this->Input->get('id');
 
@@ -220,16 +207,14 @@ class tl_videobox_archive extends Backend
 						}
 
 						// Add permissions on group level
-						elseif ($this->User->groups[0] > 0)
-						{
+						elseif ($this->User->groups[0] > 0) {
 							$objGroup = $this->Database->prepare("SELECT videobox_archives, videobox_operations FROM tl_user_group WHERE id=?")
 													   ->limit(1)
 													   ->execute($this->User->groups[0]);
 
 							$arrOperations = deserialize($objGroup->videobox_operations);
 
-							if (is_array($arrOperations) && in_array('create', $arrOperations))
-							{
+							if (is_array($arrOperations) && in_array('create', $arrOperations)) {
 								$arrArchives = deserialize($objGroup->videobox_archives);
 								$arrArchives[] = $this->Input->get('id');
 
@@ -248,8 +233,7 @@ class tl_videobox_archive extends Backend
 			case 'copy':
 			case 'delete':
 			case 'show':
-				if (!in_array($this->Input->get('id'), $root) || ($this->Input->get('act') == 'delete' && !$this->User->hasAccess('delete', 'videobox_operations')))
-				{
+				if (!in_array($this->Input->get('id'), $root) || ($this->Input->get('act') == 'delete' && !$this->User->hasAccess('delete', 'videobox_operations'))) {
 					$this->log('Not enough permissions to '.$this->Input->get('act').' videobox archive ID "'.$this->Input->get('id').'"', __METHOD__, TL_ERROR);
 					$this->redirect('contao/main.php?act=error');
 				}
@@ -259,28 +243,22 @@ class tl_videobox_archive extends Backend
 			case 'deleteAll':
 			case 'overrideAll':
 				$session = $this->Session->getData();
-				if ($this->Input->get('act') == 'deleteAll' && !$this->User->hasAccess('delete', 'videobox_operations'))
-				{
+				if ($this->Input->get('act') == 'deleteAll' && !$this->User->hasAccess('delete', 'videobox_operations')) {
 					$session['CURRENT']['IDS'] = array();
-				}
-				else
-				{
+				} else {
 					$session['CURRENT']['IDS'] = array_intersect($session['CURRENT']['IDS'], $root);
 				}
 				$this->Session->setData($session);
 				break;
 
 			default:
-				if (strlen($this->Input->get('act')))
-				{
+				if (strlen($this->Input->get('act'))) {
 					$this->log('Not enough permissions to '.$this->Input->get('act').' videobox archives', __METHOD__, TL_ERROR);
 					$this->redirect('contao/main.php?act=error');
 				}
 				break;
 		}
 	}
-	
-	
 	
 	/**
 	 * Method to list all video types
@@ -290,8 +268,7 @@ class tl_videobox_archive extends Backend
 	{
 		$arrTypes = array();
 
-		foreach(array_keys($GLOBALS['VIDEOBOX']['VideoType']) as $type)
-		{
+		foreach(array_keys($GLOBALS['VIDEOBOX']['VideoType']) as $type) {
 			$arrTypes[$type] = $GLOBALS['TL_LANG']['VideoTypes'][$type];
 		}
 

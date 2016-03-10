@@ -24,7 +24,7 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
  /**
@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['videobox_video'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_video'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options_callback'		  => array('VideoBox_Helpers', 'getVideos'),
+	'options_callback'		  => array('Laemmi\Videobox\VideoBoxHelpers', 'getVideos'),
 	'eval'					  => array('mandatory'=>true)
 );
 

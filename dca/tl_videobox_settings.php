@@ -24,7 +24,7 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
@@ -269,13 +269,13 @@ $GLOBALS['TL_DCA']['tl_videobox_settings']['fields'] += array(
     )
 );
 
-class tl_videobox_settings extends Backend
+class tl_videobox_settings extends \Backend
 {
 	/**
 	 * Hide the corresponding fields if they have been deactivated in the archive
 	 * @param object
 	 */
-	public function hideFields(DataContainer $dc)
+	public function hideFields(\DataContainer $dc)
 	{
 		// get pid
 		$objPid = $this->Database->prepare("SELECT pid FROM tl_videobox_settings WHERE id=?")
@@ -286,8 +286,7 @@ class tl_videobox_settings extends Backend
 										 ->execute($objPid->pid);
 		
 		// if there is absolutely no video type active, we're going to unset all the fields
-		if(strlen($objAVT->activeVideoTypes) == 0)
-		{
+		if(strlen($objAVT->activeVideoTypes) == 0) {
 			$GLOBALS['TL_DCA']['tl_videobox_settings']['palettes']['default'] = '';
 			return;
 		}
@@ -298,14 +297,12 @@ class tl_videobox_settings extends Backend
 		// build disallowed videotypes array
 		$arrDAVT = $GLOBALS['VIDEOBOX']['VideoType'];
 		
-		foreach($arrAVT as $k => $vidType)
-		{
+		foreach($arrAVT as $k => $vidType) {
 			unset($arrDAVT[$vidType]);
 		}
 		
 		// check the palette
-		foreach($arrDAVT as $k => $vidType)
-		{ 
+		foreach($arrDAVT as $k => $vidType) {
 			// awful regexp - thanks to chris (Xtra) for support - you're the man!
 			$GLOBALS['TL_DCA']['tl_videobox_settings']['palettes']['default'] = preg_replace('#|(\{' . $vidType . '_[^}]*\}(\s*)(,|;)(\s*))|(' . $vidType . '_[^,;}]*(\s*)(,|;)(\s*))#i', '', $GLOBALS['TL_DCA']['tl_videobox_settings']['palettes']['default']);
 		}

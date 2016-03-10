@@ -24,15 +24,15 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 // BE MOD
 $GLOBALS['BE_MOD']['content']['videobox'] = array
 (
     'tables'               => array('tl_videobox_archive','tl_videobox','tl_videobox_settings'),
-    'icon'         		   => 'system/modules/videobox/html/videobox.png',
-	'videobox_settings'	   => array('VideoBox_Helpers', 'linkToSettings')
+    'icon'         		   => 'system/modules/videobox/assets/videobox.png',
+	'videobox_settings'	   => array('Laemmi\Videobox\VideoBoxHelpers', 'linkToSettings')
 );
 
 // FE MOD
@@ -47,7 +47,7 @@ array_insert($GLOBALS['TL_CTE'], 2, array
 (
 	'videos' => array
 	(
-		'videobox'     => 'ContentVideoBox'
+		'videobox'     => 'Laemmi\Videobox\ContentVideoBox'
 	)
 ));
 
@@ -56,7 +56,7 @@ $GLOBALS['TL_PERMISSIONS'][] = 'videobox_archives';
 $GLOBALS['TL_PERMISSIONS'][] = 'videobox_operations';
 
 // InsertTag Hook
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('VideoBox_Helpers', 'replaceVideoBoxInsertTags');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('Laemmi\Videobox\VideoBoxHelpers', 'replaceVideoBoxInsertTags');
 
 // Videotypes Array
 $GLOBALS['VIDEOBOX']['VideoType'] = array();
@@ -65,7 +65,7 @@ $GLOBALS['VIDEOBOX']['VideoType'] = array();
  * Add youtube videotype. This is how the array should look like if you're adding an additional video type:
 $GLOBALS['VIDEOBOX']['VideoType']['videotype_name'] = array('Class', 'Method');
  */
-$GLOBALS['VIDEOBOX']['VideoType']['youtube'] = array('YouTube', 'parseVideo');
+$GLOBALS['VIDEOBOX']['VideoType']['youtube'] = array('Laemmi\Videobox\YouTubeFrontend', 'parseVideo');
 
 // Vimeo
-$GLOBALS['VIDEOBOX']['VideoType']['vimeo'] = array('Vimeo', 'parseVideo');
+$GLOBALS['VIDEOBOX']['VideoType']['vimeo'] = array('Laemmi\Videobox\VimeoFrontend', 'parseVideo');

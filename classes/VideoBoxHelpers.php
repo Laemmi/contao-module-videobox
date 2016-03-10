@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -19,18 +19,28 @@
  * IN THE SOFTWARE.
  *
  * @category    contao-module-videobox
- * @package     VideoBox_Helpers
+ * @package     VideoBoxHelpers
  * @author      Michael Lämmlein <laemmi@spacerabbit.de>
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
- * Class VideoBox_Helpers 
+ * Namespace
  */
-class VideoBox_Helpers extends Controller
+namespace Laemmi\Videobox;
+
+/**
+ * Use
+ */
+use Laemmi\Videobox\VideoBoxElement;
+
+/**
+ * Class VideoBoxHelpers
+ */
+class VideoBoxHelpers extends \Controller
 {
 	/**
 	 * Load database object
@@ -40,8 +50,7 @@ class VideoBox_Helpers extends Controller
 		parent::__construct();
 		$this->import('Database');
 	}
-	
-	
+
 /***********************************************************************************************************************/
 /* FRONTEND
 /***********************************************************************************************************************/
@@ -62,8 +71,7 @@ class VideoBox_Helpers extends Controller
 			$objNews = $this->Database->prepare("SELECT videobox_video FROM tl_news WHERE videobox_addvideo=? AND id=?")
 									  ->execute(1,$strID);
 			
-			if($objNews->numRows < 1)
-			{
+			if($objNews->numRows < 1) {
 				return '';
 			}
 			
@@ -72,16 +80,14 @@ class VideoBox_Helpers extends Controller
 		}
 		
 		// {{VIDEOBOX_EVENTS::CONTAINERID}} 
-		if(strpos($strTag, 'VIDEOBOX_EVENTS::') !== false)
-		{
+		if(strpos($strTag, 'VIDEOBOX_EVENTS::') !== false) {
 			$arrData = explode('::', $strTag);
 			$strID = $arrData[1];
 			
 			$objNews = $this->Database->prepare("SELECT videobox_video FROM tl_calendar_events WHERE videobox_addvideo=? AND id=?")
 									  ->execute(1,$strID);
 			
-			if($objNews->numRows < 1)
-			{
+			if($objNews->numRows < 1) {
 				return '';
 			}
 
@@ -90,8 +96,7 @@ class VideoBox_Helpers extends Controller
 		}
 		
 		// {{VIDEOBOX_STANDALONE::VIDEOID}}
-		if(strpos($strTag, 'VIDEOBOX_STANDALONE::') !== false)
-		{
+		if(strpos($strTag, 'VIDEOBOX_STANDALONE::') !== false) {
 			$arrData = explode('::', $strTag);
 			
             $objVideo = new VideoBoxElement((int) $arrData[1]);
@@ -100,11 +105,7 @@ class VideoBox_Helpers extends Controller
         
 		return false;
 	}
-	
 
-	
-	
-	
 /***********************************************************************************************************************/
 /* BACKEND
 /***********************************************************************************************************************/
@@ -123,31 +124,26 @@ class VideoBox_Helpers extends Controller
 
 		// build groups
 		
- 		while($objVideos->next())
-		{
+ 		while($objVideos->next()) {
 			// show everything to admins
-			if($this->User->isAdmin)
-			{
+			if($this->User->isAdmin) {
 				$groups[$objVideos->archivetitle][$objVideos->videoid] = $objVideos->videotitle . ' [ID: ' . $objVideos->videoid . ']';
 				continue;
 			}
 			
 			// if there is no usergroup allowed at all (empty blob)
-			if(strlen($objVideos->allowedUserGroups) == 0)
-			{
+			if(strlen($objVideos->allowedUserGroups) == 0) {
 				continue;
 			}
 			
 			// check whether the user is allowed to see the video
-			if(count(array_intersect($this->User->groups, deserialize($objVideos->allowedUserGroups))))
-			{
+			if(count(array_intersect($this->User->groups, deserialize($objVideos->allowedUserGroups)))) {
 				$groups[$objVideos->archivetitle][$objVideos->videoid] = $objVideos->videotitle . ' [ID: ' . $objVideos->videoid . ']';
 			}
 		}
 		return $groups; 
 	}
 
-	
 	/**
 	 * Compile InsertTags
 	 * @param object
@@ -156,22 +152,18 @@ class VideoBox_Helpers extends Controller
 	 */
 	public function linkToSettings($dc)
 	{
-
 		// check wheter there has already been created a settings entry
 		$objCheck = $this->Database->prepare("SELECT id FROM tl_videobox_settings WHERE pid=?")
 								   ->execute($dc->id);
 		
 		// no entry yet - redirect to the create page
-		if($objCheck->numRows < 1)
-		{
+		if($objCheck->numRows < 1) {
 			$this->redirect('contao/main.php?do=videobox&table=tl_videobox_settings&act=create&mode=2&pid=' . $dc->id);
 		}
 
 		// else redirect to the existing entry 
 		$this->redirect('contao/main.php?do=videobox&table=tl_videobox_settings&act=edit&id=' . $objCheck->id);
-		
 	}
-    
     
     /**
      * Prepare video template data
@@ -187,16 +179,14 @@ class VideoBox_Helpers extends Controller
         $arrReturn['videoData'] = $objVideo->getData();
         $arrReturn['title'] = $objVideo->videotitle;
         
-        if ($intJumpTo)
-        {
+        if ($intJumpTo) {
             // jumpTo gets cached automatically
             $objJumpTo = $this->Database->prepare('SELECT id,alias FROM tl_page WHERE id=?')->execute($intJumpTo);
             $arrReturn['href']  = ampersand($this->generateFrontendUrl($objJumpTo->row(), '/video/' . ((!$GLOBALS['TL_CONFIG']['disableAlias'] && $objVideo->alias != '') ? $objVideo->alias : $objVideo->videoid)));
         }
 
         // thumb
-        if ($objVideo->thumb)
-        {
+        if ($objVideo->thumb) {
             $objImgData = new stdClass();
             $arrItem = array_merge($arrReturn['videoData'], array
             (

@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -24,8 +24,13 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
+
+/**
+ * Namespace
+ */
+namespace Laemmi\Videobox;
 
 /**
  * Class VideoBoxElement 
@@ -71,8 +76,7 @@ class VideoBoxElement extends \System
 		$this->import('Database');
 		
 		// SQL - provide data for other tables too
-		if($this->strTable == 'tl_videobox')
-		{
+		if($this->strTable == 'tl_videobox') {
 			$strSQL =	'SELECT
 							v.*,a.*,s.*,v.id as videoid
 						FROM
@@ -89,20 +93,16 @@ class VideoBoxElement extends \System
 							a.id = s.pid
 						WHERE
 							v.id=? OR v.alias=?';
-		}
-		else
-		{
+		} else {
 			$strSQL = 'SELECT * FROM ' . $this->strTable . ' WHERE id=? OR alias=?';
 		}		
 		
         // get data
-        $objData = \Database::getInstance()->prepare($strSQL)
-        //$objData = $this->Database->prepare($strSQL)
+        $objData = $this->Database->prepare($strSQL)
                                         ->limit(1)
                                         ->execute($varId, $varId);
                                         
-        if (!$objData->numRows)
-        {
+        if (!$objData->numRows) {
             throw new Exception('The video with id or alias "' . $varId . '" does not exist!');
         }
         
@@ -110,8 +110,7 @@ class VideoBoxElement extends \System
 		$this->arrData = $objData->fetchAssoc();
 		
 		// set videotype
-		if(!$this->strVideoType)
-		{
+		if(!$this->strVideoType) {
 			$this->strVideoType = $this->arrData['videotype'];
 		}
     }
@@ -132,10 +131,10 @@ class VideoBoxElement extends \System
      * @param string key
      * @return mixed
      */
-    public function __get__($strKey)
-    {
-        return (isset($this->arrData[$strKey])) ? $this->arrData[$strKey] : null;
-    }
+//    public function __get($strKey)
+//    {
+//        return (isset($this->arrData[$strKey])) ? $this->arrData[$strKey] : null;
+//    }
 	
     
 	/**
@@ -152,28 +151,10 @@ class VideoBoxElement extends \System
 
             $this->import($class);
 
-            return $this->_getClass($class)->$method($this->arrData);
+            return $this->$class->$method($this->arrData);
         }
         
         // other than that, there's no videobox hook for this type!
         throw new Exception('There is no valid video type hook for the video type "' . $this->strVideoType . '"!');
 	}
-
-
-    private function _getClass($strKey)
-    {
-        if (!isset($this->arrObjects[$strKey]))
-        {
-            if ($strKey == 'Input' || $strKey == 'Environment')
-            {
-                $this->arrObjects[$strKey] = $strKey::getInstance();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        return $this->arrObjects[$strKey];
-    }
 }

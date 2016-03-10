@@ -24,7 +24,7 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
@@ -183,9 +183,16 @@ $GLOBALS['TL_DCA']['tl_videobox']['fields'] += array(
     )
 );
 
-class tl_videobox extends Backend
-{
+/**
+ * Use
+ */
+use Laemmi\Videobox\VideoBoxElement;
 
+/**
+ * Class tl_videobox
+ */
+class tl_videobox extends \Backend
+{
 	/**
 	 * Method to list all video types that have been allowed for this archive
 	 * @return array
@@ -199,8 +206,7 @@ class tl_videobox extends Backend
 									 ->execute($objPID->pid);
 									 
 		// if there are no video types allowed return
-		if(strlen($objArchive->aVT) == 0)
-		{
+		if(strlen($objArchive->aVT) == 0) {
 			return;
 		}
 		
@@ -240,11 +246,10 @@ class tl_videobox extends Backend
      * @param DataContainer
      * @return string
      */
-    public function generateAlias($varValue, DataContainer $dc)
+    public function generateAlias($varValue, \DataContainer $dc)
     {
         // Generate an alias if there is none
-        if ($varValue == '')
-        {
+        if ($varValue == '') {
             $varValue = standardize($this->restoreBasicEntities($dc->activeRecord->videotitle));
         }
 
@@ -252,14 +257,12 @@ class tl_videobox extends Backend
                                    ->execute($varValue);
                                    
         // if the ID matches the current one editing, everything is perfect
-        if ($objAlias->id == $dc->id)
-        {
+        if ($objAlias->id == $dc->id) {
             return $varValue;
         }
 
         // Check whether the page alias exists
-        if ($objAlias->numRows)
-        {
+        if ($objAlias->numRows) {
             throw new Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
         }
 

@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -19,35 +19,67 @@
  * IN THE SOFTWARE.
  *
  * @category    contao-module-videobox
- * @package     ContentVideoBox
+ * @package     ModuleVideoBoxReader
  * @author      Michael Lämmlein <laemmi@spacerabbit.de>
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
- * Class ContentVideoBox
+ * Namespace
  */
-class ContentVideoBox extends ContentElement
-{
+namespace Laemmi\Videobox;
 
+/**
+ * Class ModuleVideoBoxReader
+ */
+class ModuleVideoBoxReader extends \Module
+{
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_videobox';
+	protected $strTemplate = 'mod_videobox_reader';
 
 	/**
-	 * Generate module
+	 * Display a wildcard in the back end
+	 * @return string
+	 */
+	public function generate()
+	{
+		if (TL_MODE == 'BE') {
+			$objTemplate = new BackendTemplate('be_wildcard');
+			$objTemplate->wildcard = '### VIDEOBOX READER ###';
+
+			$objTemplate->title = $this->headline;
+			$objTemplate->id = $this->id;
+			$objTemplate->link = $this->name;
+			$objTemplate->href = 'typolight/main.php?do=modules&amp;act=edit&amp;id=' . $this->id;
+
+			return $objTemplate->parse();
+		}
+        
+        if (!$this->Input->get('video')) {
+            return '';
+        }
+        
+        // overwrite the module template
+        if ($this->videobox_tpl_reader) {
+            $this->strTemplate = $this->videobox_tpl_reader;
+        }
+
+		return parent::generate();
+	}
+
+	/**
+	 * Generate the module
 	 */
 	protected function compile()
 	{
-	    $objVideo = new VideoBoxElement((int) $this->videobox_video);
-		$this->Template->element = $objVideo->generate();
-
-		$this->Template->description = $this->videobox_description;
-		$this->Template->float = in_array($this->videobox_floating, array('left', 'right')) ? sprintf(' float:%s;', $this->videobox_floating) : '';		
-	}
+	    $this->import('VideoBoxHelpers', 'VBHelper');
+        $this->Template->videoData = $this->VBHelper->prepareVideoTemplateData($this->Input->get('video'));
+    }
 }
+	

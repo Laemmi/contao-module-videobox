@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -24,13 +24,18 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
- * Class YouTube 
+ * Namespace
  */
-class YouTube extends Frontend
+namespace Laemmi\Videobox;
+
+/**
+ * Class YouTubeFrontend
+ */
+class YouTubeFrontend extends \Frontend
 {
 	/**
 	 * Youtube URL
@@ -69,12 +74,9 @@ class YouTube extends Frontend
 		$this->arrData['archive_title'] = $arrDBData['title'];
 		
 		// size
-		if(!strlen($arrDBData['youtube_size']))
-		{
+		if(!strlen($arrDBData['youtube_size'])) {
 			$arrSize = array(425,344);
-		}
-		else
-		{
+		} else {
 			$arrSize = deserialize($arrDBData['youtube_size']);
 		}
 		
@@ -85,12 +87,9 @@ class YouTube extends Frontend
 		$arrUrlData = array();
 
 		// rel
-		if ($arrDBData['youtube_rel'])
-		{
+		if ($arrDBData['youtube_rel']) {
 			$arrUrlData['rel'] = 1;
-		}
-		else
-		{
+		} else {
 			$arrUrlData['rel'] = 0;
 		}
 
@@ -139,7 +138,7 @@ class YouTube extends Frontend
 		$this->arrData['noflash'] = specialchars(sprintf($GLOBALS['TL_LANG']['VideoBox']['youtube_noflash'], $arrDBData['videotitle']));
 
 		// Template
-		$objTemplate = new FrontendTemplate($this->strTemplate);
+		$objTemplate = new \FrontendTemplate($this->strTemplate);
 		$objTemplate->setData($this->arrData);
 		return $objTemplate->parse();
 	}
@@ -154,16 +153,14 @@ class YouTube extends Frontend
 	{
 		$total = count($arrData);
 		
-		if ($total < 1)
-		{
+		if ($total < 1) {
 			return '';
 		}
 		
 		$strQuery = '';
 		$i = 0;
 		
-		foreach($arrData as $param => $value)
-		{
+		foreach($arrData as $param => $value) {
 			$strQuery .= (($i == 0) ? '?' : '&') . $param . '=' . $value;
 			$i++;
 		}

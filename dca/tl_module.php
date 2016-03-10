@@ -24,7 +24,7 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
@@ -76,29 +76,18 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['videobox_tpl_reader'] = array
 );
 
 
-class tl_module_videobox extends Backend
+class tl_module_videobox extends \Backend
 {
-    
-    /**
-     * Initialize the object
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    
     /**
      * Return all videobox templates as array
      * @param DataContainer
      * @return array
      */
-    public function getVideoBoxTemplates(DataContainer $dc)
+    public function getVideoBoxTemplates(\DataContainer $dc)
     {
         $intPid = $dc->activeRecord->pid;
 
-        if ($this->Input->get('act') == 'overrideAll')
-        {
+        if ($this->Input->get('act') == 'overrideAll') {
             $intPid = $this->Input->get('id');
         }
 

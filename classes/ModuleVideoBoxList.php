@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -24,21 +24,24 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
+
+/**
+ * Namespace
+ */
+namespace Laemmi\Videobox;
 
 /**
  * Class ModuleVideoBoxList 
  */
-class ModuleVideoBoxList extends Module
+class ModuleVideoBoxList extends \Module
 {
-    
 	/**
 	 * Template
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_videobox_list';
-
 
 	/**
 	 * Display a wildcard in the back end
@@ -46,9 +49,8 @@ class ModuleVideoBoxList extends Module
 	 */
 	public function generate()
 	{
-		if (TL_MODE == 'BE')
-		{
-			$objTemplate = new BackendTemplate('be_wildcard');
+		if (TL_MODE == 'BE') {
+			$objTemplate = new \BackendTemplate('be_wildcard');
 			$objTemplate->wildcard = '### VIDEOBOX LIST ###';
 
 			$objTemplate->title = $this->headline;
@@ -60,8 +62,7 @@ class ModuleVideoBoxList extends Module
 		}
         
         // overwrite the module template
-        if ($this->videobox_tpl_list)
-        {
+        if ($this->videobox_tpl_list) {
             $this->strTemplate = $this->videobox_tpl_list;
         }
 
@@ -76,8 +77,7 @@ class ModuleVideoBoxList extends Module
 	{
         $arrArchives = deserialize($this->videobox_archives, true);
         
-        if (empty($arrArchives))
-        {
+        if (empty($arrArchives)) {
             return '';
         }
         
@@ -86,15 +86,13 @@ class ModuleVideoBoxList extends Module
         
         // prepare the sql
         $strSQL = '';
-        if ($this->videobox_sql)
-        {
+        if ($this->videobox_sql) {
             $strSQL = ' ' . trim($this->videobox_sql);
         }
         
         $intTotal = (int) $this->Database->query('SELECT COUNT(id) AS total FROM tl_videobox WHERE pid IN (' . implode(',', $arrArchives) . ')' . $strSQL)->total;
         
-        if ($intTotal == 0)
-        {
+        if ($intTotal == 0) {
             $this->Template->hasVideos = false;
             $this->Template->msg = $GLOBALS['TL_LANG']['VideoBox']['no_videos'];
             return;
@@ -104,8 +102,7 @@ class ModuleVideoBoxList extends Module
         $offset = 0;
 
         // Pagination
-        if ($this->perPage > 0)
-        {
+        if ($this->perPage > 0) {
             $page = $this->Input->get('page') ? $this->Input->get('page') : 1;
             $offset = ($page - 1) * $this->perPage;
             $limit = min($this->perPage + $offset, $intTotal);
@@ -126,10 +123,9 @@ class ModuleVideoBoxList extends Module
         $objVideos = $objVideosStmt->execute();
         $arrVideos = array();
         $count = 0;
-        $this->import('VideoBox_Helpers', 'VBHelper');
+        $this->import('VideoBoxHelpers', 'VBHelper');
         
-        while ($objVideos->next())
-        {
+        while ($objVideos->next()) {
             $arrVideoData = $this->VBHelper->prepareVideoTemplateData($objVideos->id, $this->videobox_jumpTo);
             $arrVideos[$objVideos->id] = array_merge($arrVideoData, array
             (

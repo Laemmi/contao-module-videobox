@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -24,13 +24,18 @@
  * @copyright   ©2016 laemmi
  * @license     http://www.opensource.org/licenses/mit-license.php MIT-License
  * @version     1.0.0
- * @since       10..03.16
+ * @since       10.03.16
  */
 
 /**
- * Class Vimeo 
+ * Namespace
  */
-class Vimeo extends Frontend
+namespace Laemmi\Videobox;
+
+/**
+ * Class VimeoFrontend
+ */
+class VimeoFrontend extends \Frontend
 {
 	/**
 	 * Youtube URL
@@ -69,12 +74,9 @@ class Vimeo extends Frontend
 		$this->arrData['archive_title'] = $arrDBData['title'];
 		
 		// size
-		if(!strlen($arrDBData['vimeo_size']))
-		{
+		if(!strlen($arrDBData['vimeo_size'])) {
 			$arrSize = array(425,344);
-		}
-		else
-		{
+		} else {
 			$arrSize = deserialize($arrDBData['vimeo_size']);
 		}
 		
@@ -103,7 +105,7 @@ class Vimeo extends Frontend
 		$this->arrData['noflash'] = $this->String->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'], $arrDBData['videotitle']));
 
 		// Template
-		$objTemplate = new FrontendTemplate($this->strTemplate);
+		$objTemplate = new \FrontendTemplate($this->strTemplate);
 		$objTemplate->setData($this->arrData);
 		return $objTemplate->parse();
 	}
