@@ -57,6 +57,7 @@ CREATE TABLE `tl_videobox_settings` (
   `vimeo_autoplay` char(1) NOT NULL default '0',
   `vimeo_showbyline` char(1) NOT NULL default '1',
   `vimeo_showtitle` char(1) NOT NULL default '1',
+  `vimeo_fs` char(1) NOT NULL default '',
   `vimeo_showportrait` char(1) NOT NULL default '1'
 
   PRIMARY KEY  (`id`),

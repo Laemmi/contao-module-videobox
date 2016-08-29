@@ -86,6 +86,7 @@ class VimeoFrontend extends \Frontend
 		$this->arrData['color'] = (strlen($arrDBData['vimeo_color'])) ? $arrDBData['vimeo_color'] : 'F7FFFD';
         $this->arrData['showbyline'] = (strlen($arrDBData['vimeo_showbyline'])) ? true : false;
         $this->arrData['showtitle'] = (strlen($arrDBData['vimeo_showtitle'])) ? true : false;
+        $this->arrData['fs'] = $arrDBData['vimeo_fs'] ? true : false;
         $this->arrData['showportrait'] = (strlen($arrDBData['vimeo_showportrait'])) ? true : false;
 
 		$this->arrData['params'] = (strlen($arrDBData['vimeo_autoplay']) && TL_MODE == 'FE') ? 'autoplay=1' : 'autoplay=0';

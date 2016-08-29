@@ -64,5 +64,6 @@ $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showbyline']['0'] = "Zeige Vi
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showbyline']['1'] = "Zeigt den Untertitel des Videos vorm abspielen.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showtitle']['0'] = "Zeige Video-Titel";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showtitle']['1'] = "Zeigt den Titel des Videos vorm abspielen.";
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_fs'] = array('Vollbild erlauben?','Soll eine Vollbildansicht erlaubt sein?');
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showportrait']['0'] = "Zeige Benutzerbild";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showportrait']['1'] = "Zeigt das Benutzerbild des Videos vorm abspielen.";
