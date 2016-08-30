@@ -208,7 +208,7 @@ $GLOBALS['TL_DCA']['tl_videobox_settings'] = array
 // Vimeo
 $GLOBALS['TL_DCA']['tl_videobox_settings']['list']['sorting']['fields'][] = 'vimeo_template';
 $GLOBALS['TL_DCA']['tl_videobox_settings']['list']['label']['fields'][] = 'vimeo_template';
-$GLOBALS['TL_DCA']['tl_videobox_settings']['palettes']['default'] .= '{vimeo_legend},vimeo_template,vimeo_size,vimeo_autoplay,vimeo_color,vimeo_showbyline,vimeo_showtitle,vimeo_showportrait;';
+$GLOBALS['TL_DCA']['tl_videobox_settings']['palettes']['default'] .= '{vimeo_legend},vimeo_template,vimeo_size,vimeo_color,vimeo_autopause,vimeo_autoplay,vimeo_badge,vimeo_showbyline,vimeo_showtitle,vimeo_fs,vimeo_showportrait;';
 $GLOBALS['TL_DCA']['tl_videobox_settings']['fields'] += array(
     'vimeo_template' => array
     (
@@ -227,21 +227,37 @@ $GLOBALS['TL_DCA']['tl_videobox_settings']['fields'] += array(
         'inputType'               => 'text',
         'eval'                    => array('mandatory'=>true, 'multiple'=>true, 'size'=>2, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50')
     ),
+    'vimeo_color' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_color'],
+        'default'                 => '',
+        'exclude'				  => true,
+        'inputType'               => 'text',
+        'eval'					  => array('maxlength' => 6,'tl_class'=>'w50')
+    ),
+    'vimeo_autopause' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autopause'],
+        'default'                 => true,
+        'exclude'				  => true,
+        'inputType'               => 'checkbox',
+        'eval'					  => array('tl_class'=>'clr w50 cbx')
+    ),
     'vimeo_autoplay' => array
     (
         'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autoplay'],
         'default'                 => false,
         'exclude'				  => true,
         'inputType'               => 'checkbox',
-        'eval'					  => array('tl_class'=>'w50')
+        'eval'					  => array('tl_class'=>'w50 cbx')
     ),
-    'vimeo_color' => array
+    'vimeo_badge' => array
     (
-        'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_color'],
-        'default'                 => 'F7FFFD',
+        'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_badge'],
+        'default'                 => true,
         'exclude'				  => true,
-        'inputType'               => 'text',
-        'eval'					  => array('maxlength' => 6,'tl_class'=>'w50')
+        'inputType'               => 'checkbox',
+        'eval'					  => array('tl_class'=>'w50 cbx')
     ),
     'vimeo_showbyline' => array
     (
@@ -249,12 +265,20 @@ $GLOBALS['TL_DCA']['tl_videobox_settings']['fields'] += array(
         'default'                 => true,
         'exclude'				  => true,
         'inputType'               => 'checkbox',
-        'eval'					  => array('tl_class'=>'clr w50 cbx')
+        'eval'					  => array('tl_class'=>'w50 cbx')
     ),
     'vimeo_showtitle' => array
     (
         'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showtitle'],
         'default'                 => true,
+        'exclude'				  => true,
+        'inputType'               => 'checkbox',
+        'eval'					  => array('tl_class'=>'w50 cbx')
+    ),
+    'vimeo_fs' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_fs'],
+        'default'                 => false,
         'exclude'				  => true,
         'inputType'               => 'checkbox',
         'eval'					  => array('tl_class'=>'w50 cbx')

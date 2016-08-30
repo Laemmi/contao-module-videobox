@@ -155,14 +155,24 @@ class VideoBoxHelpers extends \Controller
 		// check wheter there has already been created a settings entry
 		$objCheck = $this->Database->prepare("SELECT id FROM tl_videobox_settings WHERE pid=?")
 								   ->execute($dc->id);
-		
+
+        $params = [
+            'do'    => 'videobox',
+            'table' => 'tl_videobox_settings',
+            'rt'    => REQUEST_TOKEN,
+        ];
 		// no entry yet - redirect to the create page
 		if($objCheck->numRows < 1) {
-			$this->redirect('contao/main.php?do=videobox&table=tl_videobox_settings&act=create&mode=2&pid=' . $dc->id);
+            $params['act']  = 'create';
+            $params['mode'] = '2';
+            $params['pid']  = $dc->id;
+			$this->redirect('contao/main.php?' . http_build_query($params));
 		}
 
+        $params['act'] = 'edit';
+        $params['id']  = $objCheck->id;
 		// else redirect to the existing entry 
-		$this->redirect('contao/main.php?do=videobox&table=tl_videobox_settings&act=edit&id=' . $objCheck->id);
+		$this->redirect('contao/main.php?' . http_build_query($params));
 	}
     
     /**

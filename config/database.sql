@@ -54,9 +54,12 @@ CREATE TABLE `tl_videobox_settings` (
   `vimeo_template` varchar(64) NOT NULL default '',
   `vimeo_size` varchar(64) NOT NULL default '',
   `vimeo_color` varchar(6) NOT NULL default '',
+  `vimeo_autopause` char(1) NOT NULL default '1',
   `vimeo_autoplay` char(1) NOT NULL default '0',
+  `vimeo_badge` char(1) NOT NULL default '1',
   `vimeo_showbyline` char(1) NOT NULL default '1',
   `vimeo_showtitle` char(1) NOT NULL default '1',
+  `vimeo_fs` char(1) NOT NULL default '',
   `vimeo_showportrait` char(1) NOT NULL default '1'
 
   PRIMARY KEY  (`id`),

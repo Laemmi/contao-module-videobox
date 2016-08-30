@@ -86,16 +86,21 @@ class VimeoFrontend extends \Frontend
 		$this->arrData['color'] = (strlen($arrDBData['vimeo_color'])) ? $arrDBData['vimeo_color'] : 'F7FFFD';
         $this->arrData['showbyline'] = (strlen($arrDBData['vimeo_showbyline'])) ? true : false;
         $this->arrData['showtitle'] = (strlen($arrDBData['vimeo_showtitle'])) ? true : false;
+        $this->arrData['fs'] = $arrDBData['vimeo_fs'] ? true : false;
         $this->arrData['showportrait'] = (strlen($arrDBData['vimeo_showportrait'])) ? true : false;
 
-		$this->arrData['params'] = (strlen($arrDBData['vimeo_autoplay']) && TL_MODE == 'FE') ? 'autoplay=1' : 'autoplay=0';
-		$this->arrData['params'].= (strlen($arrDBData['vimeo_color'])) ? '&color=' . $arrDBData['vimeo_color'] : 'ffffff';
-		$this->arrData['params'].= (strlen($arrDBData['vimeo_showbyline'])) ? '&byline=1' : '&byline=0';
-		$this->arrData['params'].= (strlen($arrDBData['vimeo_showtitle'])) ? '&title=1' : '&title=0';
-		$this->arrData['params'].= (strlen($arrDBData['vimeo_showportrait'])) ? '&portrait=1' : '&portrait=0';
+        $params = [];
+        !$arrDBData['vimeo_autopause']                      ? $params['autopause'] = '0' : '';
+        ($arrDBData['vimeo_autoplay'] && TL_MODE == 'FE')   ? $params['autoplay'] = '1' : '';
+        !$arrDBData['vimeo_badge']                          ? $params['badge'] = '0' : '';
+        $arrDBData['vimeo_color']                           ? $params['color'] = $arrDBData['vimeo_color'] : '';
+        !$arrDBData['vimeo_showbyline']                     ? $params['byline'] = '0' : '';
+        !$arrDBData['vimeo_showportrait']                   ? $params['portrait'] = '0' : '';
 
-		$this->strVimeoUrl = 'http://www.vimeo.com/moogaloop.swf?clip_id=' . $arrDBData['vimeo_id'] . '&server=www.vimeo.com&';
-		$this->strVimeoUrl.= $this->arrData['params'];
+        $this->arrData['params'] = http_build_query($params);
+
+		$this->strVimeoUrl = '//player.vimeo.com/video/' . $arrDBData['vimeo_id'] . '';
+		$this->strVimeoUrl.= $this->arrData['params'] ? '?' . $this->arrData['params'] : '';
 		
 		$this->arrData['vimeolink'] = $this->strVimeoUrl;
 		$this->arrData['vimeoid'] = $arrDBData['vimeo_id'];
