@@ -90,7 +90,9 @@ class VimeoFrontend extends \Frontend
         $this->arrData['showportrait'] = (strlen($arrDBData['vimeo_showportrait'])) ? true : false;
 
         $params = [];
+        !$arrDBData['vimeo_autopause']                      ? $params['autopause'] = '0' : '';
         ($arrDBData['vimeo_autoplay'] && TL_MODE == 'FE')   ? $params['autoplay'] = '1' : '';
+        !$arrDBData['vimeo_badge']                          ? $params['badge'] = '0' : '';
         $arrDBData['vimeo_color']                           ? $params['color'] = $arrDBData['vimeo_color'] : '';
         !$arrDBData['vimeo_showbyline']                     ? $params['byline'] = '0' : '';
         !$arrDBData['vimeo_showportrait']                   ? $params['portrait'] = '0' : '';
