@@ -238,7 +238,7 @@ $GLOBALS['TL_DCA']['tl_videobox_settings']['fields'] += array(
     'vimeo_color' => array
     (
         'label'                   => &$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_color'],
-        'default'                 => 'F7FFFD',
+        'default'                 => '',
         'exclude'				  => true,
         'inputType'               => 'text',
         'eval'					  => array('maxlength' => 6,'tl_class'=>'w50')

@@ -53,9 +53,9 @@ $GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_showinfo'] = array('Informa
  */
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_legend'] = "Vimeo Video";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_template']['0'] = "Template";
-$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_template']['1'] = "Wählen Sie das Template für Youtube Videos.";
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_template']['1'] = "Wählen Sie das Template für Vimeo Videos.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_size']['0'] = "Größe";
-$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_size']['1'] = "Wählen Sie die Grösse für Youtube Videos (Breite x Höhe).";
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_size']['1'] = "Wählen Sie die Grösse für Vimeo Videos (Breite x Höhe).";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autoplay']['0'] = "Automatisches Abspielen aktivieren?";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autoplay']['1'] = "Wenn diese Checkbox angewählt ist, wird das Video beim Laden des Players abgespielt.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_color']['0'] = "Farbe";
