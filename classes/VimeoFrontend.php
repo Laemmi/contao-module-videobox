@@ -63,7 +63,7 @@ class VimeoFrontend extends \Frontend
 	 */
 	public function parseVideo($arrDBData)
 	{
-		$this->import('String');
+		$this->import('StringUtil');
 		
 		// set template
 		$this->strTemplate = (strlen($arrDBData['vimeo_template'])) ? $arrDBData['vimeo_template'] : 'videobox_vimeo';
@@ -106,8 +106,8 @@ class VimeoFrontend extends \Frontend
 		$this->arrData['vimeoid'] = $arrDBData['vimeo_id'];
 
 		// usability, useless as vimeo supports html5
-		$this->arrData['noscript'] = $this->String->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noscript'], $arrDBData['videotitle']));
-		$this->arrData['noflash'] = $this->String->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'], $arrDBData['videotitle']));
+		$this->arrData['noscript'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noscript'], $arrDBData['videotitle']));
+		$this->arrData['noflash'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'], $arrDBData['videotitle']));
 
 		// Template
 		$objTemplate = new \FrontendTemplate($this->strTemplate);
