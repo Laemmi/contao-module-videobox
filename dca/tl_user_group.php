@@ -30,8 +30,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_user_group']['palettes']['default'] = str_replace('{alexf_legend}', '{videobox_legend},videobox_archives,videobox_operations;{alexf_legend}', $GLOBALS['TL_DCA']['tl_user_group']['palettes']['default']);
-
+$GLOBALS['TL_DCA']['tl_user_group']['palettes']['default'] = str_replace('formp;', 'formp;{videobox_legend},videobox_archives,videobox_operations;', $GLOBALS['TL_DCA']['tl_user_group']['palettes']['default']);
 
 /**
  * Fields
