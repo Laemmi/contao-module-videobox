@@ -1,4 +1,4 @@
-# Lammi´s Contao Videobox bundle
+# Laemmi´s Contao Videobox bundle
 
 ## Install composer packages
     docker run -it --rm \
