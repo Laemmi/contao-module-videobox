@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -30,8 +31,8 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_calendar_events']['videobox_addvideo'] = array('Video hinzufügen', 'Dem Beitrag ein Video hinzufügen.');
-$GLOBALS['TL_LANG']['tl_calendar_events']['videobox_video'] = array('Videos', 'Bitte wählen Sie das Video aus, das Sie hinzufügen möchten.');
+$GLOBALS['TL_LANG']['tl_calendar_events']['videobox_addvideo'] = ['Video hinzufügen', 'Dem Beitrag ein Video hinzufügen.'];
+$GLOBALS['TL_LANG']['tl_calendar_events']['videobox_video'] = ['Videos', 'Bitte wählen Sie das Video aus, das Sie hinzufügen möchten.'];
 
 
 /**

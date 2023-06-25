@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -35,5 +36,5 @@ $GLOBALS['TL_LANG']['tl_user']['videobox_legend'] = 'VideoBox-Rechte';
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_user']['videobox_archives']	= array('Erlaubte VideoBox-Archive', 'Hier können Sie den Zugriff auf ein oder mehrere VideoBox-Archive erlauben.');
-$GLOBALS['TL_LANG']['tl_user']['videobox_operations']	= array('VideoBox-Archivrechte', 'Hier können Sie die VideoBox-Archivrechte festlegen.');
+$GLOBALS['TL_LANG']['tl_user']['videobox_archives'] = ['Erlaubte VideoBox-Archive', 'Hier können Sie den Zugriff auf ein oder mehrere VideoBox-Archive erlauben.'];
+$GLOBALS['TL_LANG']['tl_user']['videobox_operations']   = ['VideoBox-Archivrechte', 'Hier können Sie die VideoBox-Archivrechte festlegen.'];

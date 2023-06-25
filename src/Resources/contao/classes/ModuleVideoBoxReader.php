@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -37,49 +38,48 @@ namespace Laemmi\Videobox;
  */
 class ModuleVideoBoxReader extends \Module
 {
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'mod_videobox_reader';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'mod_videobox_reader';
 
-	/**
-	 * Display a wildcard in the back end
-	 * @return string
-	 */
-	public function generate()
-	{
-		if (TL_MODE == 'BE') {
-			$objTemplate = new BackendTemplate('be_wildcard');
-			$objTemplate->wildcard = '### VIDEOBOX READER ###';
+    /**
+     * Display a wildcard in the back end
+     * @return string
+     */
+    public function generate()
+    {
+        if (TL_MODE == 'BE') {
+            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### VIDEOBOX READER ###';
 
-			$objTemplate->title = $this->headline;
-			$objTemplate->id = $this->id;
-			$objTemplate->link = $this->name;
-			$objTemplate->href = 'typolight/main.php?do=modules&amp;act=edit&amp;id=' . $this->id;
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
+            $objTemplate->href = 'typolight/main.php?do=modules&amp;act=edit&amp;id=' . $this->id;
 
-			return $objTemplate->parse();
-		}
-        
+            return $objTemplate->parse();
+        }
+
         if (!$this->Input->get('video')) {
             return '';
         }
-        
+
         // overwrite the module template
         if ($this->videobox_tpl_reader) {
             $this->strTemplate = $this->videobox_tpl_reader;
         }
 
-		return parent::generate();
-	}
+        return parent::generate();
+    }
 
-	/**
-	 * Generate the module
-	 */
-	protected function compile()
-	{
-	    $this->import('VideoBoxHelpers', 'VBHelper');
+    /**
+     * Generate the module
+     */
+    protected function compile()
+    {
+        $this->import('VideoBoxHelpers', 'VBHelper');
         $this->Template->videoData = $this->VBHelper->prepareVideoTemplateData($this->Input->get('video'));
     }
 }
-	

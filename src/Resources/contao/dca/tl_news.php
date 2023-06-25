@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -26,29 +27,30 @@
  * @version     1.0.0
  * @since       10.03.16
  */
+
 /**
  * Add palettes to tl_news
  */
 $GLOBALS['TL_DCA']['tl_news']['palettes']['__selector__'][] = 'videobox_addvideo';
-$GLOBALS['TL_DCA']['tl_news']['palettes']['default'] = str_replace('addEnclosure;','addEnclosure;{videobox_legend:hide},videobox_addvideo;',$GLOBALS['TL_DCA']['tl_news']['palettes']['default']);
+$GLOBALS['TL_DCA']['tl_news']['palettes']['default'] = str_replace('addEnclosure;', 'addEnclosure;{videobox_legend:hide},videobox_addvideo;', $GLOBALS['TL_DCA']['tl_news']['palettes']['default']);
 $GLOBALS['TL_DCA']['tl_news']['subpalettes']['videobox_addvideo'] = 'videobox_video';
 
 /**
  * Add fields to tl_news
  */
-$GLOBALS['TL_DCA']['tl_news']['fields']['videobox_addvideo'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['videobox_addvideo'],
-	'exclude'                 => true,
-	'inputType'               => 'checkbox',
-	'eval'					  => array('submitOnChange'=>true)
-);
+$GLOBALS['TL_DCA']['tl_news']['fields']['videobox_addvideo'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_news']['videobox_addvideo'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => ['submitOnChange' => true]
+];
 
-$GLOBALS['TL_DCA']['tl_news']['fields']['videobox_video'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['videobox_video'],
-	'exclude'                 => true,
-	'inputType'               => 'select',
-	'options_callback'		  => array('Laemmi\Videobox\VideoBoxHelpers', 'getVideos'),
-	'eval'					  => array('mandatory'=>true)
-);
+$GLOBALS['TL_DCA']['tl_news']['fields']['videobox_video'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_news']['videobox_video'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options_callback'        => ['Laemmi\Videobox\VideoBoxHelpers', 'getVideos'],
+    'eval'                    => ['mandatory' => true]
+];

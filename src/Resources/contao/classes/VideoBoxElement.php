@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -33,51 +34,51 @@
 namespace Laemmi\Videobox;
 
 /**
- * Class VideoBoxElement 
+ * Class VideoBoxElement
  */
 class VideoBoxElement extends \System
 {
     /**
      * Data table
-     * @var string 
+     * @var string
      */
-	public $strTable = '';
-	
-	 /**
+    public $strTable = '';
+
+     /**
      * Video type
-     * @var string 
+     * @var string
      */
-	public $strVideoType = '';
-	 
+    public $strVideoType = '';
+
     /**
      * Data array
-     * @var array 
+     * @var array
      */
-    public $arrData = array();
-	
+    public $arrData = [];
+
     /**
      * Video object
-     * @var object 
+     * @var object
      */
     public $objVideo;
-	
+
     /**
      * Initialize the object
-     * @param mixed either the video ID or its alias 
-     * @param string 
-     * @param string 
+     * @param mixed either the video ID or its alias
+     * @param string
+     * @param string
      */
-    public function __construct($varId, $strTable='tl_videobox', $strVideoType='')
+    public function __construct($varId, $strTable = 'tl_videobox', $strVideoType = '')
     {
-		// set vars
-		$this->strTable = $strTable;
-		$this->strVideoType = $strVideoType;
-		
-		$this->import('Database');
-		
-		// SQL - provide data for other tables too
-		if($this->strTable == 'tl_videobox') {
-			$strSQL =	'SELECT
+        // set vars
+        $this->strTable = $strTable;
+        $this->strVideoType = $strVideoType;
+
+        $this->import('Database');
+
+        // SQL - provide data for other tables too
+        if ($this->strTable == 'tl_videobox') {
+            $strSQL =   'SELECT
 							v.*,a.*,s.*,v.id as videoid
 						FROM
 						(
@@ -93,26 +94,26 @@ class VideoBoxElement extends \System
 							a.id = s.pid
 						WHERE
 							v.id=? OR v.alias=?';
-		} else {
-			$strSQL = 'SELECT * FROM ' . $this->strTable . ' WHERE id=? OR alias=?';
-		}		
-		
+        } else {
+            $strSQL = 'SELECT * FROM ' . $this->strTable . ' WHERE id=? OR alias=?';
+        }
+
         // get data
         $objData = $this->Database->prepare($strSQL)
                                         ->limit(1)
                                         ->execute($varId, $varId);
-                                        
+
         if (!$objData->numRows) {
             throw new Exception('The video with id or alias "' . $varId . '" does not exist!');
         }
-        
-		// set data
-		$this->arrData = $objData->fetchAssoc();
-		
-		// set videotype
-		if(!$this->strVideoType) {
-			$this->strVideoType = $this->arrData['videotype'];
-		}
+
+        // set data
+        $this->arrData = $objData->fetchAssoc();
+
+        // set videotype
+        if (!$this->strVideoType) {
+            $this->strVideoType = $this->arrData['videotype'];
+        }
     }
 
 
@@ -124,8 +125,8 @@ class VideoBoxElement extends \System
     {
         return $this->arrData;
     }
-    
-    
+
+
     /**
      * Access the video data
      * @param string key
@@ -135,17 +136,16 @@ class VideoBoxElement extends \System
 //    {
 //        return (isset($this->arrData[$strKey])) ? $this->arrData[$strKey] : null;
 //    }
-	
-    
-	/**
+
+
+    /**
      * Return the video object as a string
-     * @return string 
+     * @return string
      */
- 	public function generate()
-	{
+    public function generate()
+    {
         // HOOK: processVideoData
-        if(isset($GLOBALS['VIDEOBOX']['VideoType']) && is_array($GLOBALS['VIDEOBOX']['VideoType']) && array_key_exists($this->strVideoType, $GLOBALS['VIDEOBOX']['VideoType']))
-        {
+        if (isset($GLOBALS['VIDEOBOX']['VideoType']) && is_array($GLOBALS['VIDEOBOX']['VideoType']) && array_key_exists($this->strVideoType, $GLOBALS['VIDEOBOX']['VideoType'])) {
             $class = $GLOBALS['VIDEOBOX']['VideoType'][$this->strVideoType][0];
             $method = $GLOBALS['VIDEOBOX']['VideoType'][$this->strVideoType][1];
 
@@ -153,8 +153,8 @@ class VideoBoxElement extends \System
 
             return $this->$class->$method($this->arrData);
         }
-        
+
         // other than that, there's no videobox hook for this type!
         throw new Exception('There is no valid video type hook for the video type "' . $this->strVideoType . '"!');
-	}
+    }
 }

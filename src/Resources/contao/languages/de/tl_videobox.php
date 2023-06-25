@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -30,13 +31,13 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_videobox']['videotitle'] = array('Videotitel', 'Geben Sie dem Video einen Titel.');
-$GLOBALS['TL_LANG']['tl_videobox']['alias'] = array('Alias', 'Geben Sie dem Video ein Alias oder lassen Sie es sich aus dem Titel generieren.');
-$GLOBALS['TL_LANG']['tl_videobox']['videotype'] = array('Videotyp', 'Wählen Sie aus, von welchem Typ Ihr Video ist.');
-$GLOBALS['TL_LANG']['tl_videobox']['thumb'] = array('Vorschaubild', 'Wählen Sie hier ein Vorschaubild aus.');
-$GLOBALS['TL_LANG']['tl_videobox']['descr'] = array('Beschreibung', 'Geben Sie hier eine Beschreibung für dieses Video ein.');
-$GLOBALS['TL_LANG']['tl_videobox']['size'] = array('Vorschaubildgrösse', 'Wählen Sie hier die Grösse des Vorschaubilds.');
-$GLOBALS['TL_LANG']['tl_videobox']['youtube_id'] = array('Youtube-ID', 'Geben Sie die Video-ID des Youtube-Videos an. Die ID ist der <strong>fett gedruckte</strong> Teil: http://www.youtube.com/watch?v=<strong>SGeZYednWtI</strong>');
+$GLOBALS['TL_LANG']['tl_videobox']['videotitle'] = ['Videotitel', 'Geben Sie dem Video einen Titel.'];
+$GLOBALS['TL_LANG']['tl_videobox']['alias'] = ['Alias', 'Geben Sie dem Video ein Alias oder lassen Sie es sich aus dem Titel generieren.'];
+$GLOBALS['TL_LANG']['tl_videobox']['videotype'] = ['Videotyp', 'Wählen Sie aus, von welchem Typ Ihr Video ist.'];
+$GLOBALS['TL_LANG']['tl_videobox']['thumb'] = ['Vorschaubild', 'Wählen Sie hier ein Vorschaubild aus.'];
+$GLOBALS['TL_LANG']['tl_videobox']['descr'] = ['Beschreibung', 'Geben Sie hier eine Beschreibung für dieses Video ein.'];
+$GLOBALS['TL_LANG']['tl_videobox']['size'] = ['Vorschaubildgrösse', 'Wählen Sie hier die Grösse des Vorschaubilds.'];
+$GLOBALS['TL_LANG']['tl_videobox']['youtube_id'] = ['Youtube-ID', 'Geben Sie die Video-ID des Youtube-Videos an. Die ID ist der <strong>fett gedruckte</strong> Teil: http://www.youtube.com/watch?v=<strong>SGeZYednWtI</strong>'];
 
 /**
  * Reference
@@ -47,12 +48,12 @@ $GLOBALS['TL_LANG']['tl_videobox']['youtube_legend'] = 'Youtube Video';
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_videobox']['new']    = array('Neues Video anlegen', 'Legen Sie ein neues Video an');
-$GLOBALS['TL_LANG']['tl_videobox']['edit']   = array('Video bearbeiten', 'Bearbeiten Sie das Video mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox']['copy']   = array('Video kopieren', 'Kopieren Sie das Video mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox']['cut']   = array('Video verschieben', 'Verschieben Sie das Video mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox']['delete'] = array('Video löschen', 'Löschen Sie das Video mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox']['show']   = array('Details des Videos', 'Zeigen Sie die Details des Videos mit der Nummer %s');
+$GLOBALS['TL_LANG']['tl_videobox']['new']    = ['Neues Video anlegen', 'Legen Sie ein neues Video an'];
+$GLOBALS['TL_LANG']['tl_videobox']['edit']   = ['Video bearbeiten', 'Bearbeiten Sie das Video mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox']['copy']   = ['Video kopieren', 'Kopieren Sie das Video mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox']['cut']   = ['Video verschieben', 'Verschieben Sie das Video mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox']['delete'] = ['Video löschen', 'Löschen Sie das Video mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox']['show']   = ['Details des Videos', 'Zeigen Sie die Details des Videos mit der Nummer %s'];
 
 /**
  * Vimeo

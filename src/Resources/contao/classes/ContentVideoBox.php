@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -42,21 +43,21 @@ use Laemmi\Videobox\VideoBoxElement;
  */
 class ContentVideoBox extends \ContentElement
 {
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'ce_videobox';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'ce_videobox';
 
-	/**
-	 * Generate module
-	 */
-	protected function compile()
-	{
-	    $objVideo = new VideoBoxElement((int) $this->videobox_video);
-		$this->Template->element = $objVideo->generate();
+    /**
+     * Generate module
+     */
+    protected function compile()
+    {
+        $objVideo = new VideoBoxElement((int) $this->videobox_video);
+        $this->Template->element = $objVideo->generate();
 
-		$this->Template->description = $this->videobox_description;
-		$this->Template->float = in_array($this->videobox_floating, array('left', 'right')) ? sprintf(' float:%s;', $this->videobox_floating) : '';		
-	}
+        $this->Template->description = $this->videobox_description;
+        $this->Template->float = in_array($this->videobox_floating, ['left', 'right']) ? sprintf(' float:%s;', $this->videobox_floating) : '';
+    }
 }

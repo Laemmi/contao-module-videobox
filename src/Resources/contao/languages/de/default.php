@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -49,4 +50,3 @@ $GLOBALS['TL_LANG']['VideoBox']['no_videos'] = 'Es wurden leider keine zutreffen
 $GLOBALS['TL_LANG']['VideoTypes']['vimeo'] = "Vimeo";
 $GLOBALS['TL_LANG']['VideoBox']['vimeo_noscript'] = "Leider ist es Ihnen nicht möglich das Video mit dem Titel \"%s\" ohne Javascript anzusehen.";
 $GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'] = "Leider ist es Ihnen nicht möglich das Video mit dem Titel \"%s\" ohne den Adobe Flash Player anzusehen.";
-

@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -35,29 +36,29 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['videobox'] = '{type_legend},type,h
 /**
  * Add fields to tl_content
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_video'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_video'],
-	'exclude'                 => true,
-	'inputType'               => 'select',
-	'options_callback'		  => array('Laemmi\Videobox\VideoBoxHelpers', 'getVideos'),
-	'eval'					  => array('mandatory'=>true)
-);
+$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_video'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_video'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options_callback'        => ['Laemmi\Videobox\VideoBoxHelpers', 'getVideos'],
+    'eval'                    => ['mandatory' => true]
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_description'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_description'],
-	'exclude'                 => true,
-	'inputType'               => 'textarea',
-	'eval'					  => array('rte'=>'tinyMCE')
-);
+$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_description'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_description'],
+    'exclude'                 => true,
+    'inputType'               => 'textarea',
+    'eval'                    => ['rte' => 'tinyMCE']
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_floating'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_floating'],
-	'exclude'                 => true,
-	'inputType'               => 'radioTable',
-	'options'                 => array('above', 'left', 'right', 'below'),
-	'eval'                    => array('cols'=>4),
-	'reference'               => &$GLOBALS['TL_LANG']['MSC']
-);
+$GLOBALS['TL_DCA']['tl_content']['fields']['videobox_floating'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['videobox_floating'],
+    'exclude'                 => true,
+    'inputType'               => 'radioTable',
+    'options'                 => ['above', 'left', 'right', 'below'],
+    'eval'                    => ['cols' => 4],
+    'reference'               => &$GLOBALS['TL_LANG']['MSC']
+];

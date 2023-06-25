@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -36,16 +37,16 @@ $GLOBALS['TL_LANG']['tl_videobox_archive']['title_legend'] = 'Globale Archiv-Ein
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_videobox_archive']['title'] = array('Titel','Geben Sie den Titel des Archivs ein.');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['activeVideoTypes'] = array('Videotypen in diesem Archiv','Wählen Sie die Videotypen, die Sie für dieses Archiv freischalten möchten.');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['allowedUserGroups'] = array('Zugriffsregelung','Die ausgewählten Gruppen haben Zugriff auf die Videos in diesem Archiv bei der Dropdown-Auswahl.');
+$GLOBALS['TL_LANG']['tl_videobox_archive']['title'] = ['Titel','Geben Sie den Titel des Archivs ein.'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['activeVideoTypes'] = ['Videotypen in diesem Archiv','Wählen Sie die Videotypen, die Sie für dieses Archiv freischalten möchten.'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['allowedUserGroups'] = ['Zugriffsregelung','Die ausgewählten Gruppen haben Zugriff auf die Videos in diesem Archiv bei der Dropdown-Auswahl.'];
 
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_videobox_archive']['editvideosettings'] = array('Einstellungen machen', 'Treffen Sie die Einstellungen für das VideoBox-Archiv mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['new']    = array('Neues VideoBox-Archiv', 'Erstellen Sie ein neues VideoBox-Archiv');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['edit']   = array('VideoBox-Archiv bearbeiten', 'Bearbeiten Sie das VideoBox-Archiv mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['copy']   = array('VideoBox-Archiv kopieren', 'Kopieren Sie das VideoBox-Archiv mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['delete'] = array('VideoBox-Archiv löschen', 'Löschen Sie das VideoBox-Archiv mit der Nummer %s');
-$GLOBALS['TL_LANG']['tl_videobox_archive']['show']   = array('Details des VideoBox-Archivs', 'Zeigen Sie die Details des VideoBox-Archiv mit der Nummer %s');
+$GLOBALS['TL_LANG']['tl_videobox_archive']['editvideosettings'] = ['Einstellungen machen', 'Treffen Sie die Einstellungen für das VideoBox-Archiv mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['new']    = ['Neues VideoBox-Archiv', 'Erstellen Sie ein neues VideoBox-Archiv'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['edit']   = ['VideoBox-Archiv bearbeiten', 'Bearbeiten Sie das VideoBox-Archiv mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['copy']   = ['VideoBox-Archiv kopieren', 'Kopieren Sie das VideoBox-Archiv mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['delete'] = ['VideoBox-Archiv löschen', 'Löschen Sie das VideoBox-Archiv mit der Nummer %s'];
+$GLOBALS['TL_LANG']['tl_videobox_archive']['show']   = ['Details des VideoBox-Archivs', 'Zeigen Sie die Details des VideoBox-Archiv mit der Nummer %s'];

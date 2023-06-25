@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -30,9 +31,9 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['videobox_video'] = array('Videos', 'Bitte wählen Sie das Video aus, das Sie hinzufügen möchten.');
-$GLOBALS['TL_LANG']['tl_content']['videobox_description'] = array('Videobeschreibung', 'Bitte geben Sie die gewünschte Beschreibung zum Video ein.');
-$GLOBALS['TL_LANG']['tl_content']['videobox_floating'] = array('Videoausrichtung', 'Bitte legen Sie fest, wie das Video ausgerichtet werden soll.');
+$GLOBALS['TL_LANG']['tl_content']['videobox_video'] = ['Videos', 'Bitte wählen Sie das Video aus, das Sie hinzufügen möchten.'];
+$GLOBALS['TL_LANG']['tl_content']['videobox_description'] = ['Videobeschreibung', 'Bitte geben Sie die gewünschte Beschreibung zum Video ein.'];
+$GLOBALS['TL_LANG']['tl_content']['videobox_floating'] = ['Videoausrichtung', 'Bitte legen Sie fest, wie das Video ausgerichtet werden soll.'];
 
 /**
  * Reference
@@ -44,4 +45,4 @@ $GLOBALS['TL_LANG']['tl_content']['videobox_legend'] = 'VideoBox Video';
  * Content Element
  */
 $GLOBALS['TL_LANG']['CTE']['videos']     = 'Video-Elemente';
-$GLOBALS['TL_LANG']['CTE']['videobox'] = array('VideoBox Video','Ein VideoBox-Video einbinden');
+$GLOBALS['TL_LANG']['CTE']['videobox'] = ['VideoBox Video','Ein VideoBox-Video einbinden'];

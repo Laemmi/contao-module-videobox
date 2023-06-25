@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -33,71 +34,71 @@
 namespace Laemmi\Videobox;
 
 /**
- * Class ModuleVideoBoxList 
+ * Class ModuleVideoBoxList
  */
 class ModuleVideoBoxList extends \Module
 {
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'mod_videobox_list';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'mod_videobox_list';
 
-	/**
-	 * Display a wildcard in the back end
-	 * @return string
-	 */
-	public function generate()
-	{
-		if (TL_MODE == 'BE') {
-			$objTemplate = new \BackendTemplate('be_wildcard');
-			$objTemplate->wildcard = '### VIDEOBOX LIST ###';
+    /**
+     * Display a wildcard in the back end
+     * @return string
+     */
+    public function generate()
+    {
+        if (TL_MODE == 'BE') {
+            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### VIDEOBOX LIST ###';
 
-			$objTemplate->title = $this->headline;
-			$objTemplate->id = $this->id;
-			$objTemplate->link = $this->name;
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
             $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
-			return $objTemplate->parse();
-		}
-        
+            return $objTemplate->parse();
+        }
+
         // overwrite the module template
         if ($this->videobox_tpl_list) {
             $this->strTemplate = $this->videobox_tpl_list;
         }
 
-		return parent::generate();
-	}
-	
-	
+        return parent::generate();
+    }
+
+
     /**
      * Generate the module
      */
-	protected function compile()
-	{
+    protected function compile()
+    {
         $arrArchives = deserialize($this->videobox_archives, true);
-        
+
         if (empty($arrArchives)) {
             return '';
         }
-        
+
         // basic template variables
         $this->Template->hasVideos = true;
-        
+
         // prepare the sql
         $strSQL = '';
         if ($this->videobox_sql) {
             $strSQL = ' ' . trim($this->videobox_sql);
         }
-        
+
         $intTotal = (int) $this->Database->query('SELECT COUNT(id) AS total FROM tl_videobox WHERE pid IN (' . implode(',', $arrArchives) . ')' . $strSQL)->total;
-        
+
         if ($intTotal == 0) {
             $this->Template->hasVideos = false;
             $this->Template->msg = $GLOBALS['TL_LANG']['VideoBox']['no_videos'];
             return;
         }
-        
+
         $limit = $intTotal;
         $offset = 0;
 
@@ -115,26 +116,27 @@ class ModuleVideoBoxList extends \Module
         $objVideosStmt = $this->Database->prepare('SELECT id FROM tl_videobox WHERE pid IN (' . implode(',', $arrArchives) . ')' . $strSQL);
 
         // Limit the result
-        if (isset($limit))
-        {
+        if (isset($limit)) {
             $objVideosStmt->limit($limit, $offset);
         }
-        
+
         $objVideos = $objVideosStmt->execute();
-        $arrVideos = array();
+        $arrVideos = [];
         $count = 0;
         $this->import('VideoBoxHelpers', 'VBHelper');
-        
+
         while ($objVideos->next()) {
             $arrVideoData = $this->VBHelper->prepareVideoTemplateData($objVideos->id, $this->videobox_jumpTo);
-            $arrVideos[$objVideos->id] = array_merge($arrVideoData, array
-            (
+            $arrVideos[$objVideos->id] = array_merge(
+                $arrVideoData,
+                [
                 'count'    => ++$count,
                 'cssClass' => (($count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % 2) == 0) ? ' odd' : ' even')
-                
-            ));
+
+                ]
+            );
         }
-        
+
         $this->Template->videos = $arrVideos;
-	}
+    }
 }

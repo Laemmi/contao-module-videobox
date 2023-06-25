@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -37,53 +38,53 @@ namespace Laemmi\Videobox;
  */
 class VimeoFrontend extends \Frontend
 {
-	/**
-	 * Youtube URL
-	 * @var string
-	 */
-	public $strVimeoUrl = '';	
-	
-	
-	/**
-	 * Youtube URL
-	 * @var string
-	 */
-	public $strTemplate = '';
-	
-	/**
-	 * Data array
-	 * @var array
-	 */
-	public $arrData = array();
-	
-	/**
-	 * Parse the array data and prepare for the Youtube video
-	 * @param array
-	 * @return array
-	 */
-	public function parseVideo($arrDBData)
-	{
-		$this->import('StringUtil');
-		
-		// set template
-		$this->strTemplate = (strlen($arrDBData['vimeo_template'])) ? $arrDBData['vimeo_template'] : 'videobox_vimeo';
-		
-		$this->arrData['id'] = 'video_' . md5(uniqid(mt_rand(), true));
-		$this->arrData['timestamp'] = $arrDBData['tstamp'];
-		$this->arrData['video_title'] = $arrDBData['videotitle'];
-		$this->arrData['archive_title'] = $arrDBData['title'];
-		
-		// size
-		if(!strlen($arrDBData['vimeo_size'])) {
-			$arrSize = array(425,344);
-		} else {
-			$arrSize = deserialize($arrDBData['vimeo_size']);
-		}
-		
-		$this->arrData['width'] = $arrSize[0];
-		$this->arrData['height'] = $arrSize[1];
-		$this->arrData['autoplay'] = (strlen($arrDBData['vimeo_autoplay']) && TL_MODE == 'FE') ? true : false;
-		$this->arrData['color'] = (strlen($arrDBData['vimeo_color'])) ? $arrDBData['vimeo_color'] : 'F7FFFD';
+    /**
+     * Youtube URL
+     * @var string
+     */
+    public $strVimeoUrl = '';
+
+
+    /**
+     * Youtube URL
+     * @var string
+     */
+    public $strTemplate = '';
+
+    /**
+     * Data array
+     * @var array
+     */
+    public $arrData = [];
+
+    /**
+     * Parse the array data and prepare for the Youtube video
+     * @param array
+     * @return array
+     */
+    public function parseVideo($arrDBData)
+    {
+        $this->import('StringUtil');
+
+        // set template
+        $this->strTemplate = (strlen($arrDBData['vimeo_template'])) ? $arrDBData['vimeo_template'] : 'videobox_vimeo';
+
+        $this->arrData['id'] = 'video_' . md5(uniqid(mt_rand(), true));
+        $this->arrData['timestamp'] = $arrDBData['tstamp'];
+        $this->arrData['video_title'] = $arrDBData['videotitle'];
+        $this->arrData['archive_title'] = $arrDBData['title'];
+
+        // size
+        if (!strlen($arrDBData['vimeo_size'])) {
+            $arrSize = [425,344];
+        } else {
+            $arrSize = deserialize($arrDBData['vimeo_size']);
+        }
+
+        $this->arrData['width'] = $arrSize[0];
+        $this->arrData['height'] = $arrSize[1];
+        $this->arrData['autoplay'] = (strlen($arrDBData['vimeo_autoplay']) && TL_MODE == 'FE') ? true : false;
+        $this->arrData['color'] = (strlen($arrDBData['vimeo_color'])) ? $arrDBData['vimeo_color'] : 'F7FFFD';
         $this->arrData['showbyline'] = (strlen($arrDBData['vimeo_showbyline'])) ? true : false;
         $this->arrData['showtitle'] = (strlen($arrDBData['vimeo_showtitle'])) ? true : false;
         $this->arrData['fs'] = $arrDBData['vimeo_fs'] ? true : false;
@@ -99,19 +100,19 @@ class VimeoFrontend extends \Frontend
 
         $this->arrData['params'] = http_build_query($params);
 
-		$this->strVimeoUrl = '//player.vimeo.com/video/' . $arrDBData['vimeo_id'] . '';
-		$this->strVimeoUrl.= $this->arrData['params'] ? '?' . $this->arrData['params'] : '';
-		
-		$this->arrData['vimeolink'] = $this->strVimeoUrl;
-		$this->arrData['vimeoid'] = $arrDBData['vimeo_id'];
+        $this->strVimeoUrl = '//player.vimeo.com/video/' . $arrDBData['vimeo_id'] . '';
+        $this->strVimeoUrl .= $this->arrData['params'] ? '?' . $this->arrData['params'] : '';
 
-		// usability, useless as vimeo supports html5
-		$this->arrData['noscript'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noscript'], $arrDBData['videotitle']));
-		$this->arrData['noflash'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'], $arrDBData['videotitle']));
+        $this->arrData['vimeolink'] = $this->strVimeoUrl;
+        $this->arrData['vimeoid'] = $arrDBData['vimeo_id'];
 
-		// Template
-		$objTemplate = new \FrontendTemplate($this->strTemplate);
-		$objTemplate->setData($this->arrData);
-		return $objTemplate->parse();
-	}
+        // usability, useless as vimeo supports html5
+        $this->arrData['noscript'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noscript'], $arrDBData['videotitle']));
+        $this->arrData['noflash'] = $this->StringUtil->decodeEntities(sprintf($GLOBALS['TL_LANG']['VideoBox']['vimeo_noflash'], $arrDBData['videotitle']));
+
+        // Template
+        $objTemplate = new \FrontendTemplate($this->strTemplate);
+        $objTemplate->setData($this->arrData);
+        return $objTemplate->parse();
+    }
 }

@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -30,11 +31,11 @@
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['videobox'] = array('VideoBox', 'Dieses Modul erlaubt Ihnen Contao in ein Videoverwaltungssystem umzuwandeln.');
+$GLOBALS['TL_LANG']['MOD']['videobox'] = ['VideoBox', 'Dieses Modul erlaubt Ihnen Contao in ein Videoverwaltungssystem umzuwandeln.'];
 
 /**
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['videobox']           = 'VideoBox';
-$GLOBALS['TL_LANG']['FMD']['videobox_list']      = array('VideoBox Liste', 'Gibt eine Liste von Videos aus VideoBox aus.');
-$GLOBALS['TL_LANG']['FMD']['videobox_reader']    = array('VideoBox Reader', 'Die Detailansicht eines Videos aus VideoBox.');
+$GLOBALS['TL_LANG']['FMD']['videobox_list']      = ['VideoBox Liste', 'Gibt eine Liste von Videos aus VideoBox aus.'];
+$GLOBALS['TL_LANG']['FMD']['videobox_reader']    = ['VideoBox Reader', 'Die Detailansicht eines Videos aus VideoBox.'];

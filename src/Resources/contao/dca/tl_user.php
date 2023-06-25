@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -37,21 +38,21 @@ $GLOBALS['TL_DCA']['tl_user']['palettes']['custom'] = str_replace('{account_lege
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_user']['fields']['videobox_archives'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['videobox_archives'],
-	'exclude'                 => true,
-	'inputType'               => 'checkbox',
-	'foreignKey'			  => 'tl_videobox_archive.title',
-	'eval'                    => array('multiple'=>true)
-);
+$GLOBALS['TL_DCA']['tl_user']['fields']['videobox_archives'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_user']['videobox_archives'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'foreignKey'              => 'tl_videobox_archive.title',
+    'eval'                    => ['multiple' => true]
+];
 
-$GLOBALS['TL_DCA']['tl_user']['fields']['videobox_operations'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_user']['videobox_operations'],
-	'exclude'                 => true,
-	'inputType'               => 'checkbox',
-	'options'                 => array('create', 'delete'),
-	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-	'eval'                    => array('multiple'=>true)
-);
+$GLOBALS['TL_DCA']['tl_user']['fields']['videobox_operations'] =
+[
+    'label'                   => &$GLOBALS['TL_LANG']['tl_user']['videobox_operations'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'options'                 => ['create', 'delete'],
+    'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+    'eval'                    => ['multiple' => true]
+];

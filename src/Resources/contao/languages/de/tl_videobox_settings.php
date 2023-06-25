@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -35,18 +36,18 @@ $GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_legend'] = 'Youtube Video';
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_template'] = array('Template','Wählen Sie das Template für Youtube Videos.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_size'] = array('Grösse','Wählen Sie die Grösse für Youtube Videos (Breite x Höhe).');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_rel'] = array('Ähnliche Videos zeigen?','Sollen ähnliche Videos angezeigt werden oder nicht?');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_autoplay'] = array('Automatisches Abspielen aktivieren?','Wenn diese Checkbox angewählt ist, wird das Video beim Laden des Players abgespielt.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_loop'] = array('Video wiederholen?','Bei dieser Option wird das gezeigte Video ständig wiederholt.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_border'] = array('Rahmen um den Player anzeigen?','Mit dieser Option können Sie einen Rahmen um den Player legen. Beachten Sie dazu auch die Farben.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_color1'] = array('Farbe 1','Diese Farbe ist die <strong>primäre</strong> Rahmenfarbe.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_color2'] = array('Farbe 2','Diese Farbe ist die <strong>sekundäre</strong> Rahmenfarbe <strong>und</strong> gleichzeitig die Hintergrundfarbe für die Kontrollleiste.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_start'] = array('Startsekunde','Hier können Sie eine Zahl erfassen, bei welcher das Video gestartet wird. Die Zahl entspricht der Anzahl Sekunden. Es kann Abweichungen von bis zu 2 Sekunden geben.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_fs'] = array('Vollbild erlauben?','Soll eine Vollbildansicht erlaubt sein?');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_hd'] = array('Video in HD anzeigen?','Diese Option funktioniert natürlich nur, wenn das Video auch in HD vorhanden ist.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_showinfo'] = array('Informationen zum Video anzeigen?','Infos wie Video-Titel und Rating anzeigen oder nicht?');
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_template'] = ['Template','Wählen Sie das Template für Youtube Videos.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_size'] = ['Grösse','Wählen Sie die Grösse für Youtube Videos (Breite x Höhe).'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_rel'] = ['Ähnliche Videos zeigen?','Sollen ähnliche Videos angezeigt werden oder nicht?'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_autoplay'] = ['Automatisches Abspielen aktivieren?','Wenn diese Checkbox angewählt ist, wird das Video beim Laden des Players abgespielt.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_loop'] = ['Video wiederholen?','Bei dieser Option wird das gezeigte Video ständig wiederholt.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_border'] = ['Rahmen um den Player anzeigen?','Mit dieser Option können Sie einen Rahmen um den Player legen. Beachten Sie dazu auch die Farben.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_color1'] = ['Farbe 1','Diese Farbe ist die <strong>primäre</strong> Rahmenfarbe.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_color2'] = ['Farbe 2','Diese Farbe ist die <strong>sekundäre</strong> Rahmenfarbe <strong>und</strong> gleichzeitig die Hintergrundfarbe für die Kontrollleiste.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_start'] = ['Startsekunde','Hier können Sie eine Zahl erfassen, bei welcher das Video gestartet wird. Die Zahl entspricht der Anzahl Sekunden. Es kann Abweichungen von bis zu 2 Sekunden geben.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_fs'] = ['Vollbild erlauben?','Soll eine Vollbildansicht erlaubt sein?'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_hd'] = ['Video in HD anzeigen?','Diese Option funktioniert natürlich nur, wenn das Video auch in HD vorhanden ist.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['youtube_showinfo'] = ['Informationen zum Video anzeigen?','Infos wie Video-Titel und Rating anzeigen oder nicht?'];
 
 /**
  * Vimeo
@@ -56,8 +57,8 @@ $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_template']['0'] = "Template";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_template']['1'] = "Wählen Sie das Template für Vimeo Videos.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_size']['0'] = "Größe";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_size']['1'] = "Wählen Sie die Grösse für Vimeo Videos (Breite x Höhe).";
-$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autopause'] = array('Pause einschalten','Pause wird eingeschaltet wenn anders Video gestartet.');
-$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_badge'] = array('Badge','Enables or disables the badge on the video.');
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autopause'] = ['Pause einschalten','Pause wird eingeschaltet wenn anders Video gestartet.'];
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_badge'] = ['Badge','Enables or disables the badge on the video.'];
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autoplay']['0'] = "Automatisches Abspielen aktivieren?";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_autoplay']['1'] = "Wenn diese Checkbox angewählt ist, wird das Video beim Laden des Players abgespielt.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_color']['0'] = "Farbe";
@@ -66,6 +67,6 @@ $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showbyline']['0'] = "Zeige Vi
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showbyline']['1'] = "Zeigt den Untertitel des Videos vorm abspielen.";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showtitle']['0'] = "Zeige Video-Titel";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showtitle']['1'] = "Zeigt den Titel des Videos vorm abspielen.";
-$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_fs'] = array('Vollbild erlauben?','Soll eine Vollbildansicht erlaubt sein?');
+$GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_fs'] = ['Vollbild erlauben?','Soll eine Vollbildansicht erlaubt sein?'];
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showportrait']['0'] = "Zeige Benutzerbild";
 $GLOBALS['TL_LANG']['tl_videobox_settings']['vimeo_showportrait']['1'] = "Zeigt das Benutzerbild des Videos vorm abspielen.";

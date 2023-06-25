@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -28,44 +29,47 @@
  */
 
 // BE MOD
-$GLOBALS['BE_MOD']['content']['videobox'] = array
-(
-    'tables'               => array('tl_videobox_archive','tl_videobox','tl_videobox_settings'),
-    'icon'         		   => 'system/modules/videobox/assets/videobox.png',
-	'videobox_settings'	   => array('Laemmi\Videobox\VideoBoxHelpers', 'linkToSettings')
-);
+$GLOBALS['BE_MOD']['content']['videobox'] =
+[
+    'tables'               => ['tl_videobox_archive','tl_videobox','tl_videobox_settings'],
+    'icon'                 => 'system/modules/videobox/assets/videobox.png',
+    'videobox_settings'    => ['Laemmi\Videobox\VideoBoxHelpers', 'linkToSettings']
+];
 
 // FE MOD
-$GLOBALS['FE_MOD']['videobox'] = array
-(
+$GLOBALS['FE_MOD']['videobox'] =
+[
     'videobox_list'     => 'ModuleVideoBoxList',
     'videobox_reader'   => 'ModuleVideoBoxReader'
-);
+];
 
 // CE
-array_insert($GLOBALS['TL_CTE'], 2, array
-(
-	'videos' => array
-	(
-		'videobox'     => 'Laemmi\Videobox\ContentVideoBox'
-	)
-));
+array_insert(
+    $GLOBALS['TL_CTE'],
+    2,
+    [
+    'videos' =>
+    [
+        'videobox'     => 'Laemmi\Videobox\ContentVideoBox'
+    ]
+    ]
+);
 
 // Permissions
 $GLOBALS['TL_PERMISSIONS'][] = 'videobox_archives';
 $GLOBALS['TL_PERMISSIONS'][] = 'videobox_operations';
 
 // InsertTag Hook
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('Laemmi\Videobox\VideoBoxHelpers', 'replaceVideoBoxInsertTags');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = ['Laemmi\Videobox\VideoBoxHelpers', 'replaceVideoBoxInsertTags'];
 
 // Videotypes Array
-$GLOBALS['VIDEOBOX']['VideoType'] = array();
+$GLOBALS['VIDEOBOX']['VideoType'] = [];
 
 /**
  * Add youtube videotype. This is how the array should look like if you're adding an additional video type:
 $GLOBALS['VIDEOBOX']['VideoType']['videotype_name'] = array('Class', 'Method');
  */
-$GLOBALS['VIDEOBOX']['VideoType']['youtube'] = array('Laemmi\Videobox\YouTubeFrontend', 'parseVideo');
+$GLOBALS['VIDEOBOX']['VideoType']['youtube'] = ['Laemmi\Videobox\YouTubeFrontend', 'parseVideo'];
 
 // Vimeo
-$GLOBALS['VIDEOBOX']['VideoType']['vimeo'] = array('Laemmi\Videobox\VimeoFrontend', 'parseVideo');
+$GLOBALS['VIDEOBOX']['VideoType']['vimeo'] = ['Laemmi\Videobox\VimeoFrontend', 'parseVideo'];
