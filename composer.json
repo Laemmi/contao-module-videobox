@@ -3,24 +3,60 @@
   "description": "Videobox module for Contao WebCMS",
   "keywords": ["youtube", "vimeo", "contao"],
   "type": "contao-module",
-  "license": "LGPL-3.0+",
-  "authors": [
+  "homepage":"https://www.spacerabbit.de/",
+  "license":"LGPL-3.0-or-later",
+  "authors":[
     {
-      "name": "Michael Lämmlein",
-      "email": "laemmi@spacerabbit.de",
-      "homepage": "http://www.spacerabbit.de",
-      "role": "Developer"
+      "name":"Michael Lämmlein",
+      "email":"laemmi@spacerabbit.de",
+      "role":"Maintainer"
     }
   ],
+  "support":{
+    "source":"https://github.com/laemmi/contao-videobox-bundle"
+  },
   "require": {
-    "php": "^7.3",
-    "contao/core": ">=3.5,<4"
+    "php": "^8.1",
+    "contao/core-bundle": "^4.13"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.11",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "conflict": {
+    "contao/core": "*",
+    "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "extra": {
-    "contao": {
-      "sources": {
-        "": "system/modules/videobox"
-      }
+    "contao-manager-plugin": "Laemmi\\ContaoVideoboxBundle\\ContaoManager\\Plugin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laemmi\\ContaoVideoboxBundle\\": "src/"
+    },
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/config/",
+      "src/Resources/contao/dca/",
+      "src/Resources/contao/languages/",
+      "src/Resources/contao/templates/"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "contao-community-alliance/composer-plugin": true,
+      "contao/manager-plugin": true,
+      "php-http/discovery": true
     }
+  },
+  "scripts": {
+    "test": [
+      "@phpcs"
+    ],
+    "phpcs": "phpcs"
   }
 }
