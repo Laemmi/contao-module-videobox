@@ -51,7 +51,7 @@ class ModuleVideoBoxReader extends \Module
     public function generate()
     {
         if (TL_MODE == 'BE') {
-            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate = new \Contao\BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### VIDEOBOX READER ###';
 
             $objTemplate->title = $this->headline;

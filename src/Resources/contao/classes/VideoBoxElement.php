@@ -36,7 +36,7 @@ namespace Laemmi\Videobox;
 /**
  * Class VideoBoxElement
  */
-class VideoBoxElement extends \System
+class VideoBoxElement extends \Contao\System
 {
     /**
      * Data table
@@ -44,7 +44,7 @@ class VideoBoxElement extends \System
      */
     public $strTable = '';
 
-     /**
+    /**
      * Video type
      * @var string
      */
@@ -70,6 +70,8 @@ class VideoBoxElement extends \System
      */
     public function __construct($varId, $strTable = 'tl_videobox', $strVideoType = '')
     {
+        parent::__construct();
+
         // set vars
         $this->strTable = $strTable;
         $this->strVideoType = $strVideoType;
@@ -100,11 +102,11 @@ class VideoBoxElement extends \System
 
         // get data
         $objData = $this->Database->prepare($strSQL)
-                                        ->limit(1)
-                                        ->execute($varId, $varId);
+            ->limit(1)
+            ->execute($varId, $varId);
 
         if (!$objData->numRows) {
-            throw new Exception('The video with id or alias "' . $varId . '" does not exist!');
+            throw new \Exception('The video with id or alias "' . $varId . '" does not exist!');
         }
 
         // set data
@@ -126,18 +128,6 @@ class VideoBoxElement extends \System
         return $this->arrData;
     }
 
-
-    /**
-     * Access the video data
-     * @param string key
-     * @return mixed
-     */
-//    public function __get($strKey)
-//    {
-//        return (isset($this->arrData[$strKey])) ? $this->arrData[$strKey] : null;
-//    }
-
-
     /**
      * Return the video object as a string
      * @return string
@@ -155,6 +145,6 @@ class VideoBoxElement extends \System
         }
 
         // other than that, there's no videobox hook for this type!
-        throw new Exception('There is no valid video type hook for the video type "' . $this->strVideoType . '"!');
+        throw new \Exception('There is no valid video type hook for the video type "' . $this->strVideoType . '"!');
     }
 }

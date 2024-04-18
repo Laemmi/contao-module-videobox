@@ -41,7 +41,7 @@ use Laemmi\Videobox\VideoBoxElement;
 /**
  * Class VideoBoxHelpers
  */
-class VideoBoxHelpers extends \Controller
+class VideoBoxHelpers extends \Contao\Controller
 {
     /**
      * Load database object
