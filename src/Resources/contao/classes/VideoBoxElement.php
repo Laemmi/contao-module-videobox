@@ -62,6 +62,8 @@ class VideoBoxElement extends \Contao\System
      */
     public $objVideo;
 
+    private ?string $errorMessage = null;
+
     /**
      * Initialize the object
      * @param mixed either the video ID or its alias
@@ -106,7 +108,8 @@ class VideoBoxElement extends \Contao\System
             ->execute($varId, $varId);
 
         if (!$objData->numRows) {
-            throw new \Exception('The video with id or alias "' . $varId . '" does not exist!');
+            $this->errorMessage = 'The video with id or alias "' . $varId . '" does not exist!';
+            return;
         }
 
         // set data
@@ -134,6 +137,10 @@ class VideoBoxElement extends \Contao\System
      */
     public function generate()
     {
+        if ($this->errorMessage) {
+            return $this->errorMessage;
+        }
+
         // HOOK: processVideoData
         if (isset($GLOBALS['VIDEOBOX']['VideoType']) && is_array($GLOBALS['VIDEOBOX']['VideoType']) && array_key_exists($this->strVideoType, $GLOBALS['VIDEOBOX']['VideoType'])) {
             $class = $GLOBALS['VIDEOBOX']['VideoType'][$this->strVideoType][0];
@@ -144,7 +151,6 @@ class VideoBoxElement extends \Contao\System
             return $this->$class->$method($this->arrData);
         }
 
-        // other than that, there's no videobox hook for this type!
-        throw new \Exception('There is no valid video type hook for the video type "' . $this->strVideoType . '"!');
+        return 'There is no valid video type hook for the video type "' . $this->strVideoType . '"!';
     }
 }
